@@ -1,0 +1,20 @@
+## Day 3
+
+Heute ist Bürotag, das bedeutet, dass ich zuerst mein Repo klonen  und im IntelliJ auf dem Notebook einrichten musste.
+Zusammen mit den IdeaVIM Einstellungen hat das doch einige Minuten beansprucht.
+Dann noch den Fortschritt von gestern löschen und ich war ready to go.
+Analog zu gestern wollte ich erneut den Integer zu binären Stellen Konverter implementieren.
+Dazu musste ich ein neues Projekt erstellen (was ich natürlich beim ersten Mal wieder falsch gemacht habe und
+vergessen habe Maven auszuwählen... was mir peinlich spät erst aufgefallen ist).
+Mit dem richtigen Setup konnte ich dann im main.java ein Stub schreiben und mit der leeren Klasse und deren Testklasse
+beginnen zu programmieren. Bereits nach einigen Minuten nervte mich das hin und her wechseln zwischen Test und Code via
+Maus und ich wollte meine gewohnte side-by-side Ansicht nutzen. Hierzu musste ich dann kurz googeln, wie ich via VIM ein
+anderes Fenster in den Fokus rücken kann. Die Lösung ist im "normal mode" via Ctrl + ww zu wechseln.
+Die nächsten 30min habe ich damit verbracht die Basics von VIM (also Navigation und Insert) mit dem einfachen Code Beispiel
+zu festigen.
+Gegen den Schluss der heutigen Session beschäftigte ich mich das erste mal mit dem Visual Mode. Zwar haben einige Tutorials
+von gestern und Montag bereits das Thema angesprochen, ich konnte mir aber noch nicht ganz vorstellen wie das genau
+funktioniert und was der Nutzen davon ist. Dank dem Blogpost https://builtin.com/articles/vim-visual-mode wurde mir schnell
+klar, dass der Visual Mode eine Alternative zur Maus ist um Text zu selektieren. Was ich aber ziemlich lange nicht kappiert
+habe ist, dass der Cursor Move Command f + s (also springen zum näcshten "s" in der Zeile) nicht über den Zeilenrand hinaus
+funktioniert. Was dazu geführt hat, das mein Windows extrem oft den typischen "Error Sound" gespielt hat.
