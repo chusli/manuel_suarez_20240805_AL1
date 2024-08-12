@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e25b0834-ec6d-4112-aadb-8166776b8f35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Cell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CellState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CoordinatedCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/CellTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/GameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +44,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "JUnit.GameTest.test.executor": "Run",
-    "JUnit.java in gameoflife.executor": "Debug",
+    "JUnit.java in gameoflife.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -152,7 +145,7 @@
       <option name="presentableId" value="Default" />
       <updated>1723461487061</updated>
       <workItem from="1723461488272" duration="120000" />
-      <workItem from="1723461612396" duration="2948000" />
+      <workItem from="1723461612396" duration="3776000" />
     </task>
     <servers />
   </component>
