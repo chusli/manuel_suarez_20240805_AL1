@@ -37,7 +37,7 @@ class GameTest {
                 new Coordinate(2, 3),
                 new Coordinate(2, 4)
         );
-        
+
         assertThat(game.print()).contains(
                 ".....",
                 "..o..",
@@ -45,6 +45,15 @@ class GameTest {
                 "..o..",
                 "..o.."
         );
+    }
+
+    @Test
+    void playWhenDeadCellHasThreeAliveNeighboursThenBecomeAlive() {
+        Game game = new Game(3, 3);
+        game.init(new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2));
+        game.play();
+
+        assertThat(game.getAliveCells()).contains(new Coordinate(1, 1));
     }
 
 }
