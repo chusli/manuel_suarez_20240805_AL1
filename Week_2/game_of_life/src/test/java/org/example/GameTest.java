@@ -28,4 +28,23 @@ class GameTest {
         assertThat(game.getAliveCells()).isEmpty();
     }
 
+    @Test
+    void printReturnsListWithAliveCells() {
+        Game game = new Game(5, 5);
+        game.init(
+                new Coordinate(2, 1),
+                new Coordinate(2, 2),
+                new Coordinate(2, 3),
+                new Coordinate(2, 4)
+        );
+        
+        assertThat(game.print()).contains(
+                ".....",
+                "..o..",
+                "..o..",
+                "..o..",
+                "..o.."
+        );
+    }
+
 }

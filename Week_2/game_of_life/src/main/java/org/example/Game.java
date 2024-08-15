@@ -33,7 +33,7 @@ public class Game {
                 long aliveNeighbours = aliveCells.stream()
                         .filter(aliveCells -> aliveCells.neighbours(candidate))
                         .count();
-                boolean isCandidateAlive = aliveCells.stream().anyMatch(coordinate -> coordinate.equals(coordinate));
+                boolean isCandidateAlive = isCandidateAlive(candidate);
                 if (isCandidateAlive && (aliveNeighbours == 2 || aliveNeighbours == 3)) {
                     nextGeneration.add(candidate);
                 } else if (!isCandidateAlive && aliveNeighbours == 3) {
@@ -43,6 +43,26 @@ public class Game {
         }
         aliveCells.clear();
         aliveCells.addAll(nextGeneration);
+    }
+
+    private boolean isCandidateAlive(Coordinate candidate) {
+        return aliveCells.stream().anyMatch(candidate::equals);
+    }
+
+    public List<String> print() {
+        List<String> output = new ArrayList<>();
+        for (int y = 0; y < yLimit; y++) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int x = 0; x < xLimit; x++) {
+                if (isCandidateAlive(new Coordinate(x, y))) {
+                    stringBuilder.append("o");
+                } else {
+                    stringBuilder.append(".");
+                }
+            }
+            output.add(stringBuilder.toString());
+        }
+        return output;
     }
 
 }
