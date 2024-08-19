@@ -18,4 +18,30 @@ class GameTest {
         assertThat(firstPlayer.getLocation()).isEqualTo(7);
     }
 
+    @Test
+    void playWhenRolledTwiceThenAdvancePlayerTwo() {
+        Player one = new Player("first");
+        Player two = new Player("second");
+        Game game = new Game(one, two);
+
+        game.play(new TestDie(1), new TestDie(2));
+        game.play(new TestDie(2), new TestDie(3));
+
+        assertThat(two.getLocation()).isEqualTo(5);
+    }
+
+    @Test
+    void playWhenFirstPlayerThrowsPairThenHaveAnotherRoll() {
+        Player one = new Player("first");
+        Player two = new Player("second");
+        Game game = new Game(one, two);
+
+        game.play(new TestDie(2), new TestDie(2));
+        game.play(new TestDie(1), new TestDie(2));
+        game.play(new TestDie(2), new TestDie(3));
+
+        assertThat(one.getLocation()).isEqualTo(7);
+        assertThat(two.getLocation()).isEqualTo(5);
+    }
+
 }
