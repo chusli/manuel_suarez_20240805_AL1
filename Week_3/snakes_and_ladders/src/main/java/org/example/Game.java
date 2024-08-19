@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class Game {
@@ -9,6 +12,8 @@ public class Game {
     private final Player firstPlayer;
 
     private final Player secondPlayer;
+
+    private final List<Ladder> ladders = new ArrayList<>();
 
     int round = 0;
 
@@ -24,11 +29,18 @@ public class Game {
 
         int amount = die1.getValue() + die2.getValue();
         if (round % 2 == 0) {
-            firstPlayer.move(amount);
+            movePlayer(amount, firstPlayer);
         } else {
-            secondPlayer.move(amount);
+            movePlayer(amount, secondPlayer);
         }
         advanceRoundIfNotEqual(die1, die2);
+    }
+
+    private void movePlayer(int amount, Player player) {
+        player.move(ladders.stream().filter(ladder -> ladder.source() == player.getLocation() + amount)
+                .findFirst()
+                .map(ladder -> ladder.target() - player.getLocation())
+                .orElse(amount));
     }
 
     private void advanceRoundIfNotEqual(Die die1, Die die2) {
@@ -40,6 +52,10 @@ public class Game {
     public boolean isRunning() {
         return Stream.of(firstPlayer, secondPlayer)
                 .allMatch(player -> player.getLocation() != END_OF_GAME);
+    }
+
+    public void add(Ladder... ladder) {
+        ladders.addAll(Arrays.stream(ladder).toList());
     }
 
 }

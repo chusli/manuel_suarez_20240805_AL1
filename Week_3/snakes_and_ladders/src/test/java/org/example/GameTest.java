@@ -59,4 +59,30 @@ class GameTest {
                 .isThrownBy(() -> game.play(new TestDie(1), new TestDie(1)));
     }
 
+    @Test
+    void playWhenHittingSnakeThenGoBack() {
+        // since the mechanic is the same use ladder but with inverse ussage of params
+        Player one = new Player("first");
+        Player two = new Player("second");
+        Game game = new Game(one, two);
+        game.add(new Ladder(16, 6));
+
+        game.play(new TestDie(15), new TestDie(1));
+
+        assertThat(one.getLocation()).isEqualTo(6);
+    }
+
+    @Test
+    void playWhenHittingLadderThenAdvance() {
+        Player one = new Player("first");
+        Player two = new Player("second");
+        Game game = new Game(one, two);
+        game.add(new Ladder(5, 12));
+
+        game.play(new TestDie(2), new TestDie(1));
+        game.play(new TestDie(1), new TestDie(4));
+
+        assertThat(two.getLocation()).isEqualTo(12);
+    }
+
 }
