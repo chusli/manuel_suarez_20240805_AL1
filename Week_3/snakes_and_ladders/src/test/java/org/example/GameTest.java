@@ -85,4 +85,17 @@ class GameTest {
         assertThat(two.getLocation()).isEqualTo(12);
     }
 
+    @Test
+    void playWhenOvershootingThenBounceBack() {
+        Player one = new Player("first");
+        Player two = new Player("second");
+        Game game = new Game(one, two);
+
+        game.play(new TestDie(100), new TestDie(1));
+        game.play(new TestDie(104), new TestDie(6));
+
+        assertThat(one.getLocation()).isEqualTo(99);
+        assertThat(two.getLocation()).isEqualTo(90);
+    }
+
 }

@@ -37,7 +37,8 @@ public class Game {
     }
 
     private void movePlayer(int amount, Player player) {
-        player.move(ladders.stream().filter(ladder -> ladder.source() == player.getLocation() + amount)
+        int newLocation = player.getLocation() + amount > END_OF_GAME ? 2 * END_OF_GAME - (player.getLocation() + amount) : player.getLocation() + amount;
+        player.move(ladders.stream().filter(ladder -> ladder.source() == newLocation)
                 .findFirst()
                 .map(ladder -> ladder.target() - player.getLocation())
                 .orElse(amount));
