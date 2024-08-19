@@ -1,6 +1,10 @@
 package org.example;
 
+import java.util.stream.Stream;
+
 public class Game {
+
+    private static final int END_OF_GAME = 100;
 
     private final Player firstPlayer;
 
@@ -14,6 +18,10 @@ public class Game {
     }
 
     public void play(Die die1, Die die2) {
+        if (!isRunning()) {
+            throw new IllegalStateException("game is not running anymore");
+        }
+
         int amount = die1.getValue() + die2.getValue();
         if (round % 2 == 0) {
             firstPlayer.move(amount);
@@ -27,6 +35,11 @@ public class Game {
         if (die1.getValue() != die2.getValue()) {
             round++;
         }
+    }
+
+    public boolean isRunning() {
+        return Stream.of(firstPlayer, secondPlayer)
+                .allMatch(player -> player.getLocation() != END_OF_GAME);
     }
 
 }

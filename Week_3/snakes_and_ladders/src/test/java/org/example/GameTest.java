@@ -3,6 +3,7 @@ package org.example;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class GameTest {
 
@@ -42,6 +43,20 @@ class GameTest {
 
         assertThat(one.getLocation()).isEqualTo(7);
         assertThat(two.getLocation()).isEqualTo(5);
+    }
+
+    @Test
+    void whenPlayerReachesFieldHundredThenGameOver() {
+        Player one = new Player("first");
+        Player two = new Player("second");
+        Game game = new Game(one, two);
+
+        game.play(new TestDie(2), new TestDie(1));
+        game.play(new TestDie(1), new TestDie(99));
+
+        assertThat(game.isRunning()).isFalse();
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> game.play(new TestDie(1), new TestDie(1)));
     }
 
 }
