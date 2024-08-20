@@ -20,14 +20,6 @@ class RandomDieTest {
     }
 
     @Test
-    void valueCanOnlyBeAccessedOnce() {
-        RandomDie randomDie = new RandomDie();
-        randomDie.getValue();
-
-        assertThatExceptionOfType(IllegalStateException.class).isThrownBy(randomDie::getValue);
-    }
-
-    @Test
     void whenThrownAlotThenValueIsBetweenOneAndSixInclusive() {
         int SAMPLE = 1_000_000;
         for(int i = 0; i < SAMPLE; i++) {

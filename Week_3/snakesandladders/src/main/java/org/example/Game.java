@@ -26,6 +26,7 @@ public class Game {
     }
 
     private void movePlayer(Player player, Die die1, Die die2) {
+        System.out.println("throw was " +die1.getValue() +" + " + die2.getValue());
         int amount = die1.getValue() + die2.getValue();
         if (overshoots(player, amount)) {
             player.move(2 * LIMIT - (player.getLocation() + amount));

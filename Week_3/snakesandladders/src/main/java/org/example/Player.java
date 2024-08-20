@@ -14,5 +14,6 @@ public class Player {
 
     public void move(int amount) {
         this.location += amount;
+        System.out.println("moving " + name + " to " + location);
     }
 }

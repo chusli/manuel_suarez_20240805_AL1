@@ -4,13 +4,14 @@ import java.util.Random;
 
 public class RandomDie extends Die{
 
-    boolean hasBeenAccessed = false;
+    private int value;
+
+    public RandomDie() {
+        value = new Random().nextInt(1, 7);
+    }
+
     @Override
     int getValue() {
-       if(hasBeenAccessed){
-           throw new IllegalStateException();
-       }
-        hasBeenAccessed = true;
-        return new Random().nextInt(1, 7);
+        return value;
     }
 }
