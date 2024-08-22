@@ -37,7 +37,7 @@ public class Game {
         if (!die1.equals(die2)) {
             round++;
         }
-        player.move(calculateMovement(player, die1, die2));
+        player.move(die1.add(die2), LIMIT);
 
         handleTeleporter(player);
     }
@@ -46,14 +46,6 @@ public class Game {
         teleporters.stream()
                 .filter(player::sitsOn)
                 .forEach(teleporter -> player.goTo(teleporter.target()));
-    }
-
-    private int calculateMovement(Player player, Die die1, Die die2) {
-        int amount = die1.add(die2);
-        if (player.getLocation() + amount > LIMIT) {
-            amount = 2 * LIMIT - (player.getLocation() + amount);
-        }
-        return amount;
     }
 
     public void add(Teleporter... teleporters) {

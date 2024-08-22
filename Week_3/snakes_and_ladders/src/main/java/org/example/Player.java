@@ -14,16 +14,20 @@ public class Player {
         return location;
     }
 
-    public void move(int amount) {
-        location += amount;
-    }
-
     public void goTo(int target) {
         location = target;
     }
 
     public boolean sitsOn(Teleporter teleporter) {
         return location == teleporter.source();
+    }
+
+    public void move(int amount, int limit) {
+        if (location + amount > limit) {
+            location = 2 * limit - (location + amount);
+        } else {
+            location += amount;
+        }
     }
 
 }
