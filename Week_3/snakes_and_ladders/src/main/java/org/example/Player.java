@@ -10,11 +10,16 @@ public class Player {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getLocation() {
         return location;
     }
 
     public void goTo(int target) {
+        System.out.println(name + " teleports to " + target);
         location = target;
     }
 
@@ -28,6 +33,7 @@ public class Player {
         } else {
             location += amount;
         }
+        System.out.println(name + " now sits on " + location);
     }
 
 }

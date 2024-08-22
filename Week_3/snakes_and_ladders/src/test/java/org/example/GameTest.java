@@ -41,6 +41,30 @@ class GameTest {
         assertThat(one.getLocation()).isEqualTo(18);
     }
 
+    @Test
+    void playWhenPlayerTwoReachesEndThenGameOver() {
+        Player one = new Player("one");
+        Player two = new Player("two");
+        Game game = new Game(one, two);
+
+        game.play(new TestDie(2), new TestDie(1));
+        game.play(new TestDie(33), new TestDie(67));
+
+        assertThat(game.gameOver()).isTrue();
+    }
+
+    @Test
+    void playWhenNoPlayerReachesEndThenNotGameOver() {
+        Player one = new Player("one");
+        Player two = new Player("two");
+        Game game = new Game(one, two);
+
+        game.play(new TestDie(2), new TestDie(1));
+        game.play(new TestDie(33), new TestDie(1));
+
+        assertThat(game.gameOver()).isFalse();
+    }
+
     private static class TestDie extends Die {
 
         public TestDie(int value) {

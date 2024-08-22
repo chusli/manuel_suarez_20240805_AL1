@@ -3,6 +3,8 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class Game {
 
@@ -22,7 +24,11 @@ public class Game {
     }
 
     public boolean gameOver() {
-        return false;
+        Optional<Player> winner = Stream.of(first, second)
+                .filter(player -> player.getLocation() == LIMIT)
+                .findAny();
+        winner.ifPresent(player -> System.out.println(player.getName() + " has won the game!"));
+        return winner.isPresent();
     }
 
     public void play(Die die1, Die die2) {
@@ -34,6 +40,7 @@ public class Game {
     }
 
     private void move(Player player, Die die1, Die die2) {
+        System.out.println(player.getName() + " rolled " + die1.value + " and " + die2.value);
         if (!die1.equals(die2)) {
             round++;
         }
