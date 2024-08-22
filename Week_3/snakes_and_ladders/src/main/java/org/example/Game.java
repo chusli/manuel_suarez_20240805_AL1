@@ -43,8 +43,9 @@ public class Game {
     }
 
     private void handleTeleporter(Player player) {
-        teleporters.stream().filter(teleporter -> teleporter.source() == player.getLocation())
-                .forEach(teleporter -> player.move(teleporter.target() - player.getLocation()));
+        teleporters.stream()
+                .filter(player::sitsOn)
+                .forEach(teleporter -> player.goTo(teleporter.target()));
     }
 
     private int calculateMovement(Player player, Die die1, Die die2) {

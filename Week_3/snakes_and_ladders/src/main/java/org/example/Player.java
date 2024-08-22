@@ -18,4 +18,12 @@ public class Player {
         location += amount;
     }
 
+    public void goTo(int target) {
+        location = target;
+    }
+
+    public boolean sitsOn(Teleporter teleporter) {
+        return location == teleporter.source();
+    }
+
 }
