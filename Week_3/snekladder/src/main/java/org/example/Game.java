@@ -56,7 +56,7 @@ public class Game {
     }
 
     private void handleTeleporter(Player player) {
-        teleporters.stream().filter(teleporter -> teleporter.getSource() == player.getLocation())
+        teleporters.stream().filter(teleporter -> teleporter.isBeingSatOnBy(player))
                 .forEach(teleporter -> teleporter.applyTo(player));
     }
 

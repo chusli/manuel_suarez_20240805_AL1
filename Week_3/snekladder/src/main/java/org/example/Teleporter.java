@@ -7,7 +7,6 @@ public abstract class Teleporter {
     private final int destination;
 
     public Teleporter(int source, int destination) {
-
         this.source = source;
         this.destination = destination;
     }
@@ -21,8 +20,13 @@ public abstract class Teleporter {
     }
 
     public void applyTo(Player player) {
-        System.out.println(player.getName() + " teleports from " + source + " to " + destination);
+        String name = getClass().getSimpleName();
+        System.out.println(player.getName() + " hit a " + name + " and goes from " + source + " to " + destination);
         player.move(destination - player.getLocation());
+    }
+
+    public boolean isBeingSatOnBy(Player player) {
+        return source == player.getLocation();
     }
 
 }
