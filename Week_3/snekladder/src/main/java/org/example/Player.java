@@ -16,7 +16,12 @@ public class Player {
 
     public int move(int amount) {
         location += amount;
+        System.out.println(name + " moves to " + location);
         return location;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

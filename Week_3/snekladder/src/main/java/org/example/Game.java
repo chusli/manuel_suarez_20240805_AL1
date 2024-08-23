@@ -3,6 +3,8 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class Game {
 
@@ -22,15 +24,17 @@ public class Game {
         this.teleporters.addAll(Arrays.stream(teleporters).toList());
     }
 
-    private static int handleBounce(Player player) {
-        if (player.getLocation() > LIMIT) {
-            return player.move(-2 * (player.getLocation() - LIMIT));
-        }
-        return player.getLocation();
+    private static int teleport(Player player, Teleporter teleporter) {
+        System.out.println(player.getName() + " teleports from " + teleporter.getSource() + " to " + teleporter.getDestination());
+        return player.move(teleporter.getDestination() - player.getLocation());
     }
 
     public boolean over() {
-        return false;
+        Optional<Player> winner = Stream.of(first, second)
+                .filter(player -> player.getLocation() == LIMIT)
+                .findAny();
+        winner.ifPresent(player -> System.out.println(player.getName() + " has won!"));
+        return winner.isPresent();
     }
 
     public void play(Die die1, Die die2) {
@@ -49,9 +53,16 @@ public class Game {
         handleTeleporter(player);
     }
 
+    private int handleBounce(Player player) {
+        if (player.getLocation() > LIMIT) {
+            return player.move(-2 * (player.getLocation() - LIMIT));
+        }
+        return player.getLocation();
+    }
+
     private void handleTeleporter(Player player) {
         teleporters.stream().filter(teleporter -> teleporter.getSource() == player.getLocation())
-                .forEach(teleporter -> player.move(teleporter.getDestination() - player.getLocation()));
+                .forEach(teleporter -> teleport(player, teleporter));
     }
 
 }
