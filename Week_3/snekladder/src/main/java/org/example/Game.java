@@ -16,7 +16,7 @@ public class Game {
 
     private final List<Teleporter> teleporters = new ArrayList<>();
 
-    private int round = 0;
+    private int playerTurn = 0;
 
     public Game(Player first, Player second, Teleporter... teleporters) {
         this.first = first;
@@ -28,18 +28,18 @@ public class Game {
         Optional<Player> winner = Stream.of(first, second)
                 .filter(player -> player.getLocation() == LIMIT)
                 .findAny();
-        winner.ifPresent(player -> System.out.println(player.getName() + " has won!"));
+        winner.ifPresent(player -> System.out.printf("%s has won after %d rounds!%n", player.getName(), playerTurn));
         return winner.isPresent();
     }
 
     public void play(Die die1, Die die2) {
         int amount = die1.value + die2.value;
-        if (round % 2 == 0) {
+        if (playerTurn % 2 == 0) {
             move(first, amount);
         } else {
             move(second, amount);
         }
-        round = die1.value == die2.value ? round : round + 1;
+        playerTurn = die1.value == die2.value ? playerTurn : playerTurn + 1;
     }
 
     private void move(Player player, int amount) {
@@ -48,11 +48,10 @@ public class Game {
         handleTeleporter(player);
     }
 
-    private int handleBounce(Player player) {
+    private void handleBounce(Player player) {
         if (player.getLocation() > LIMIT) {
-            return player.move(-2 * (player.getLocation() - LIMIT));
+            player.move(-2 * (player.getLocation() - LIMIT));
         }
-        return player.getLocation();
     }
 
     private void handleTeleporter(Player player) {
