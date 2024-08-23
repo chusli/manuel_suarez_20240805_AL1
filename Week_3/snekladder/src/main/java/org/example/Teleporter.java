@@ -12,4 +12,12 @@ public abstract class Teleporter {
         this.destination = destination;
     }
 
+    public int getSource() {
+        return source;
+    }
+
+    public int getDestination() {
+        return destination;
+    }
+
 }
