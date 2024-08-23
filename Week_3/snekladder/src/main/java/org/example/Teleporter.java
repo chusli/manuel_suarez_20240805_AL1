@@ -20,4 +20,9 @@ public abstract class Teleporter {
         return destination;
     }
 
+    public void applyTo(Player player) {
+        System.out.println(player.getName() + " teleports from " + source + " to " + destination);
+        player.move(destination - player.getLocation());
+    }
+
 }

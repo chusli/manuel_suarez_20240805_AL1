@@ -24,11 +24,6 @@ public class Game {
         this.teleporters.addAll(Arrays.stream(teleporters).toList());
     }
 
-    private static int teleport(Player player, Teleporter teleporter) {
-        System.out.println(player.getName() + " teleports from " + teleporter.getSource() + " to " + teleporter.getDestination());
-        return player.move(teleporter.getDestination() - player.getLocation());
-    }
-
     public boolean over() {
         Optional<Player> winner = Stream.of(first, second)
                 .filter(player -> player.getLocation() == LIMIT)
@@ -62,7 +57,7 @@ public class Game {
 
     private void handleTeleporter(Player player) {
         teleporters.stream().filter(teleporter -> teleporter.getSource() == player.getLocation())
-                .forEach(teleporter -> teleport(player, teleporter));
+                .forEach(teleporter -> teleporter.applyTo(player));
     }
 
 }
